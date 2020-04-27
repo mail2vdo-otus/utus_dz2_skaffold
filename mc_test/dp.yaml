@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: testrest-dp
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: testrest
+  template:
+    metadata:
+       labels:
+         app: testrest
+    spec:
+      containers:
+      - name: springboot
+        image: mail2vdo/otus_dz1
+        env:
+         - name: DATABASE_URI
+#           value: postgres/myapp 
+           valueFrom:
+             configMapKeyRef:
+              name: testrest-conf
+              key: DATABASE_URI
+         - name: DATABASE_USER
+#           value: myuser
+           valueFrom:
+             configMapKeyRef:
+               name: testrest-conf
+               key: DATABASE_USER
+         - name: DATABASE_PASSWORD
+#           value: passwd
+           valueFrom:
+             secretKeyRef:
+               name: testrest-conf-sec1
+               key: DATABASE_PASSWORD
+         - name: appStatusMessage
+           valueFrom:
+             configMapKeyRef:
+               name: testrest-conf
+               key: appStatusMessage
+        ports:
+          - name: web
+            containerPort: 8000
+        readinessProbe:
+           httpGet:
+             port: 8000
+             path: /version
+           initialDelaySeconds: 10
+           periodSeconds: 5
+        livenessProbe:
+           httpGet:
+             port: 8000
+             path: /version
+           initialDelaySeconds: 10
+           periodSeconds: 10

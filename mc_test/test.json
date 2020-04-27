@@ -1,0 +1,218 @@
+{
+    "info": {
+	"_postman_id": "0b4f8e92-bbc6-4380-9ddd-933b15519623",
+	"name": "testrest",
+	"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+	{
+	    "name": " /request/",
+	    "protocolProfileBehavior": {
+		"disableBodyPruning": true
+	    },
+	    "request": {
+		"method": "GET",
+		"header": [],
+		"body": {
+		    "mode": "raw",
+		    "raw": "{\"message\":\"test post\"}"
+		},
+		"url": {
+		    "raw": "http://{{url}}/users",
+		    "protocol": "http",
+		    "host": [
+			"{{url}}"
+		    ],
+		    "path": [
+			"users"
+		    ]
+		}
+	    },
+	    "response": []
+	},
+	{
+	    "name": "user_post",
+	    "event": [
+		{
+		    "listen": "test",
+		    "script": {
+			"id": "ff800c09-665e-4db7-85d0-03267e22becd",
+			"exec": [
+			    "var resp = JSON.parse(responseBody);",
+			    "pm.collectionVariables.set(\"id\",resp[\"id\"])",
+			    ""
+			],
+			"type": "text/javascript"
+		    }
+		}
+	    ],
+	    "request": {
+		"method": "POST",
+		"header": [
+		    {
+			"key": "Content-Type",
+			"value": "application/json",
+			"type": "text"
+		    }
+		],
+		"body": {
+		    "mode": "raw",
+		    "raw": "{\r\n    \"id\": 0,\r\n    \"firstName\": \"вася\",\r\n    \"surName\": \"клюквин\",\r\n    \"birthDate\": \"2020-04-26T00:00:00.000+0000\"\r\n}"
+		},
+		"url": {
+		    "raw": "http://{{url}}/user",
+		    "protocol": "http",
+		    "host": [
+			"{{url}}"
+		    ],
+		    "path": [
+			"user"
+		    ]
+		}
+	    },
+	    "response": []
+	},
+	{
+	    "name": "getUser",
+	    "event": [
+		{
+		    "listen": "test",
+		    "script": {
+			"id": "719fd769-72be-492d-a055-119e1ca0ee24",
+			"exec": [
+			    ""
+			],
+			"type": "text/javascript"
+		    }
+		}
+	    ],
+	    "protocolProfileBehavior": {
+		"disableBodyPruning": true
+	    },
+	    "request": {
+		"method": "GET",
+		"header": [
+		    {
+			"key": "Content-type",
+			"value": "application/json",
+			"type": "text"
+		    }
+		],
+		"body": {
+		    "mode": "raw",
+		    "raw": ""
+		},
+		"url": {
+		    "raw": "http://{{url}}/user/{{id}}",
+		    "protocol": "http",
+		    "host": [
+			"{{url}}"
+		    ],
+		    "path": [
+			"user",
+			"{{id}}"
+		    ]
+		}
+	    },
+	    "response": []
+	},
+	{
+	    "name": "postUser Copy",
+	    "event": [
+		{
+		    "listen": "test",
+		    "script": {
+			"id": "764c1bca-7f1e-4eea-b616-3b952a0ff628",
+			"exec": [
+			    "var resp = JSON.parse(responseBody);",
+			    "pm.collectionVariables.set(\"id\",resp[\"id\"])",
+			    ""
+			],
+			"type": "text/javascript"
+		    }
+		}
+	    ],
+	    "request": {
+		"method": "DELETE",
+		"header": [
+		    {
+			"key": "Content-type",
+			"value": "application/json",
+			"type": "text"
+		    }
+		],
+		"body": {
+		    "mode": "raw",
+		    "raw": "{\r\n    \"id\": 0,\r\n    \"firstName\": \"тося\",\r\n    \"surName\": \"кокин\",\r\n    \"birthDate\": \"2020-04-26T00:00:00.000+0000\"\r\n}"
+		},
+		"url": {
+		    "raw": "http://{{url}}/user/{{id}}",
+		    "protocol": "http",
+		    "host": [
+			"{{url}}"
+		    ],
+		    "path": [
+			"user",
+			"{{id}}"
+		    ]
+		}
+	    },
+	    "response": []
+	},
+	{
+	    "name": "alluser",
+	    "request": {
+		"method": "GET",
+		"header": [],
+		"url": {
+		    "raw": "http://{{url}}/users",
+		    "protocol": "http",
+		    "host": [
+			"{{url}}"
+		    ],
+		    "path": [
+			"users"
+		    ]
+		}
+	    },
+	    "response": []
+	}
+    ],
+    "event": [
+	{
+	    "listen": "prerequest",
+	    "script": {
+		"id": "bad25e6c-d3ac-4873-9330-b8cadaf85aa5",
+		"type": "text/javascript",
+		"exec": [
+		    ""
+		]
+	    }
+	},
+	{
+	    "listen": "test",
+	    "script": {
+		"id": "29333bce-a2c2-424a-9698-a8589120a686",
+		"type": "text/javascript",
+		"exec": [
+		    ""
+		]
+	    }
+	}
+    ],
+    "variable": [
+	{
+	    "id": "e7857651-d008-470c-bfa2-b3381bbcdfa1",
+	    "key": "url",
+	    "value": "84.201.160.110/testRest",
+	    "type": "string"
+	},
+	{
+	    "id": "b731543e-66b5-4b77-9ed1-e10ce0a73031",
+	    "key": "id",
+	    "value": null,
+	    "type": "any"
+	}
+    ],
+    "protocolProfileBehavior": {}
+}

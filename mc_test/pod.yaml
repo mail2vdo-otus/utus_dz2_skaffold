@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: testrest
+  labels:
+   app: testRest
+spec:
+ containers:
+ - name: testrest
+   image: mail2vdo/otus_dz1:20200419
+   ports:
+   - containerPort: 8000

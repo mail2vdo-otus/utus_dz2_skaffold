@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: testrest-rs
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: testrest
+  template:
+    metadata:
+       labels:
+         app: testrest
+    spec:
+      containers:
+      - name: springboot
+        image: mail2vdo/otus_dz1:20200419
+        ports:
+          - containerPort: 8000
+

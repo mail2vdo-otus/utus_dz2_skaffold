@@ -1,0 +1,20 @@
+apiVersion: skaffold/v2beta2
+kind: Config
+metadata:
+  name: configuration
+build:
+  artifacts:
+  - image: mail2vdo/otus_dz1
+    context: ../IdeaProjects/testRest/
+    docker:
+      dockerfile: Dockerfile
+deploy:
+  kubectl:
+    manifests:
+    - postgr.yaml
+    - config-testrest.yaml
+    - config-testrest-sec.yaml
+    - dp.yaml
+    - serv.yaml
+    - ingr.yaml
+
