@@ -6,10 +6,24 @@ metadata:
     nginx.ingress.kubernetes.io/rewrite-target: /$2
 spec:
   rules:
-  - http:
-      paths:
-        - path: /testrest($|/)(.*)
-          backend:
-            serviceName: testrest-serv
-            servicePort: 80
+    - host: "localhost"
+      http:
+        paths:
+          - path: /testrest(/|$)(.*)
+            backend:
+              serviceName: testrest-serv
+              servicePort: 80
+    - http:
+        paths:
+          - path: /testrest(/|$)(.*)
+            backend:
+              serviceName: testrest-serv
+              servicePort: 80
+    - host: "arch.homework"
+      http:
+          paths:
+            - path: /otusapp(/|$)(.*)
+              backend:
+                serviceName: testrest-serv
+                servicePort: 80
 

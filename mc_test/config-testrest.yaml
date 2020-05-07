@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: testrest-conf
+data:
+ appStatusMessage: mapConf-3333
+ DATABASE_URI: postgres:5432/myapp
+ DATABASE_USER: myuser

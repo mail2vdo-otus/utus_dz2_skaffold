@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: springboot
-        image: mail2vdo/otus_dz1
+        image: mail2vdo/otus_dz1:1.0.96
         env:
          - name: DATABASE_URI
 #           value: postgres/myapp 
